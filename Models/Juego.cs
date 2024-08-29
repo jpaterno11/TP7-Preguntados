@@ -13,11 +13,11 @@ public static class Juego
         puntajeActual = 0;
         cantidadPreguntasCorrectas = 0;
     }
-    public static list ObtenerCategorias()
+    public static List<Categoria> ObtenerCategorias()
     {
         return BD.ObtenerCategorias();
     }
-    public static list ObtenerDificultades()
+    public static List<Dificultades> ObtenerDificultades()
     {
         return BD.ObtenerDificultades();
     }
