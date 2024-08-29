@@ -7,8 +7,7 @@ public static class BD
 {
     private static List<Catergoria> _listaCategorias;
     private static List<Dificultades> _listaDificultades;
-    private static List<Preguntas> _listaPreguntas;
-    private static List<Respuestas> _listaRespuestas;
+
     private static string _connectionString = @"Server=localhost; DataBase=PreguntadOrt ; Trusted_Connection=True;";
 
     public static List<Categoria> ObtenerCategorias()
