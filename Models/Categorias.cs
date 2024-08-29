@@ -1,12 +1,12 @@
-public class Catergoria
+public class Categoria
 {
     public int IdCatergoria { get; set; }
     public string Nombre { get; set; }
     public string Foto { get; set; }
 
-    public Catergoria() { }
+    public Categoria() { }
 
-    public Catergoria(int IdCatergoria, string nombre, string foto)
+    public Categoria(int IdCatergoria, string nombre, string foto)
     {
         IdCatergoria = IdCatergoria;
         Nombre = nombre;
