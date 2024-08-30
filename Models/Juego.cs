@@ -1,39 +1,33 @@
 public static class Juego
 {
-    private static string Username {get; set;}
-    private static int puntajeActual {get; set;}
-    private static int contadorPreguntaActual {get; set;}
-    private static int cantidadPreguntasCorrectas {get; set;}
+    private static string _username {get; set;}
+    private static int _puntajeActual {get; set;}
+    private static int _contadorPreguntaActual {get; set;}
+    private static int _cantidadPreguntasCorrectas {get; set;}
     private static List<Preguntas> _preguntas {get; set;}
-    private static List<Respuestas> _respuestas {get; set;}
+    public static List<Respuestas> _respuestas {get; set;}
 
     public static void InicializarJuego()
     {  
-        Username = null;
-        puntajeActual = 0;
-        cantidadPreguntasCorrectas = 0;
-    }
-    public static List<Categoria> ObtenerCategorias()
-    {
-        return BD.ObtenerCategorias();
-    }
-    public static List<Dificultades> ObtenerDificultades()
-    {
-        return BD.ObtenerDificultades();
+        _username = null;
+        _puntajeActual = 0;
+        _cantidadPreguntasCorrectas = 0;
     }
     public static void CargarPartida(string username, int dificultad, int categoria)
     {
-        Username = username;
+        _username = username;
         _preguntas = BD.ObtenerPreguntas(dificultad, categoria);
-        _respuestas = new List<Respuesta>();
-
-        foreach (Pregunta pregunta in _preguntas)
+        _respuestas = new List<Respuestas>();
+        foreach (Preguntas pregunta in _preguntas)
         {
-            Respuesta respuestasPregunta = BD.ObtenerRespuestas(pregunta.IdPregunta); 
-            _respuestas.Add(respuestasPregunta);
+            _respuestas.Add(BD.ObtenerRespuestas(pregunta.IdPreguntas)); 
         }
     }
-    public static Pregunta ObtenerProximaPregunta()
+    public static bool HayPreguntasCargadas()
+    {
+        return _preguntas != null && _preguntas.Count > 0;
+    }
+    public static Preguntas ObtenerProximaPregunta()
     {
         if (_preguntas != null && _preguntas.Count > 0)
         {
@@ -42,5 +36,20 @@ public static class Juego
             return _preguntas[random];
         }
         return null;
+    }
+    
+     public static bool VerificarRespuesta(int idPregunta, int idRespuesta)
+    {
+        var respuestaCorrecta = _respuestas.Find(respuesta => respuesta.IdRespuestas == idRespuesta && respuesta.IdPregunta == idPregunta && respuesta.Correcta);
+
+        if (respuestaCorrecta != null)
+        {
+            _puntajeActual += 10;
+            _cantidadPreguntasCorrectas++;
+            _preguntas.RemoveAll(pregunta => pregunta.IdPreguntas == idPregunta);
+            return true;
+        }
+
+        return false;
     }
 }

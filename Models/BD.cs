@@ -15,7 +15,7 @@ public static class BD
         string query = "SELECT * FROM Categorias";
         using (SqlConnection db = new SqlConnection(_connectionString))
         {
-            return db.Query<Categoria>(query).AsList();
+            return _listaCategorias = db.Query<Categoria>(query).AsList();
         }
     }
 
@@ -24,7 +24,7 @@ public static class BD
         string query = "SELECT * FROM Dificultades";
         using (SqlConnection db = new SqlConnection(_connectionString))
         {
-            return db.Query<Dificultades>(query).AsList();
+            return _listaDificultades = db.Query<Dificultades>(query).AsList();
         }
     }
 
@@ -37,12 +37,20 @@ public static class BD
         }
     }
 
-    public static List<Respuestas> ObtenerRespuestas(int idPregunta)
+    public static Respuestas ObtenerRespuestas(int idPregunta)
     {
         string query = "SELECT * FROM Respuestas WHERE IdPregunta = @IdPregunta";
         using (SqlConnection db = new SqlConnection(_connectionString))
         {
-            return db.Query<Respuestas>(query, new { IdPregunta = idPregunta }).AsList();
+            return db.QuerySingleOrDefault<Respuestas>(query, new { IdPregunta = idPregunta });
+        }
+    }
+    public static List<Respuestas> ObtenerRespuestas()
+    {
+        string query = "SELECT * FROM Respuestas";
+        using (SqlConnection db = new SqlConnection(_connectionString))
+        {
+            return db.Query<Respuestas>(query).AsList();
         }
     }
 }
