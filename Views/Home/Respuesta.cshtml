@@ -1,0 +1,23 @@
+@{
+    ViewData["Title"] = "Resultado";
+    var esCorrecta = ViewBag.EsCorrecta;
+    var respuestaCorrecta = ViewBag.RespuestaCorrecta;
+    var usuario = ViewBag.Username;
+}
+
+<div class="container mt-5 text-center">
+    <div class="card shadow-lg p-4 animate__animated animate__zoomIn">
+        <h3 class="text-primary">@usuario</h3>
+        <h4 class="@((esCorrecta) ? "text-success" : "text-danger")">
+            @if (esCorrecta)
+            {
+               <p> Respuesta Correcta </p>
+            }
+            else
+            {
+               <p> ¡Respuesta Incorrecta! La respuesta correcta era: @respuestaCorrecta.Contenido </p>
+            }
+        </h4>
+        <a href="@Url.Action("Jugar", "Home")" class="btn btn-primary mt-4">Siguiente Pregunta</a>
+    </div>
+</div>

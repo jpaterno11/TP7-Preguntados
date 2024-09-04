@@ -1,0 +1,42 @@
+@{
+    ViewData["Title"] = "Juego";
+    List<Respuestas> respuestas = ViewBag.Respuestas;
+    var usuario = ViewBag.Username;
+    var puntaje = ViewBag.PuntajeActual;
+    var contadorPregunta = ViewBag.ContadorPreguntaActual;
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg animate__animated animate__fadeIn">
+        <div class="card-header bg-primary text-white">
+            <h4>Jugador: @usuario - Puntaje: @puntaje</h4>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Pregunta @contadorPregunta:</h5>
+            <p class="card-text">@ViewBag.Pregunta.Enunciado</p>
+            @if (!string.IsNullOrEmpty(ViewBag.Pregunta.Foto))
+            {
+                <img src="~/img/@ViewBag.Pregunta.Foto" alt="Imagen de la pregunta" class="img-fluid mb-3 rounded shadow-sm">
+            }
+
+            <form method="post" action="@Url.Action("VerificarRespuesta", "Home")">
+                @foreach (var respuesta in respuestas)
+                {
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="idRespuesta" id="respuesta@respuesta.IdRespuestas" value="@respuesta.IdRespuestas" required>
+                        <label class="form-check-label" for="respuesta@respuesta.IdRespuestas">
+                            @respuesta.Opcion: @respuesta.Contenido
+                        </label>
+                        @if (!string.IsNullOrEmpty(respuesta.Foto))
+                        {
+                            <img src="~/img/@respuesta.Foto" alt="Imagen de la respuesta" class="img-fluid rounded shadow-sm">
+                        }
+                    </div>
+                }
+
+                <input type="hidden" name="idPregunta" value="@ViewBag.Pregunta.IdPreguntas">
+                <button type="submit" class="btn btn-success mt-3">Responder</button>
+            </form>
+        </div>
+    </div>
+</div>

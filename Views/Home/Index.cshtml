@@ -1,8 +1,16 @@
 ﻿@{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Inicio";
 }
 
-<div>
-    <h1>Index</h1>
-    <p>Bienvenidos al sitio web de NombreProyecto</p>
+<div class="d-flex flex-column align-items-center justify-content-center vh-100 text-center bg-gradient">
+    <div class="mb-4 logo-animado">
+        <img src="~/img/logo.png" alt="Logo del Juego" class="img-fluid" style="max-width: 200px;">
+    </div>
+
+    <h1 class="display-4 fw-bold mb-3 text-white animate__animated animate__fadeIn">¡Bienvenidos a PreguntadOrt!</h1>
+    <p class="lead mb-5 text-white animate__animated animate__fadeIn animate__delay-1s">El desafío de preguntas definitivo. ¿Estás listo para poner a prueba tus conocimientos?</p>
+
+    <a href="@Url.Action("ConfigurarJuego", "Home")" class="btn btn-light btn-lg px-5 animate__animated animate__pulse animate__infinite">
+        ¡Comenzar!
+    </a>
 </div>

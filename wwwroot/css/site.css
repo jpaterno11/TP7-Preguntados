@@ -21,3 +21,46 @@ footer {
   background-color: #f8f9fa;
   border-top: 1px solid #e9ecef;
 }
+.logo-animado img {
+  animation: bounceIn 2s;
+}
+
+@keyframes bounceIn {
+  0% {
+      opacity: 0;
+      transform: scale(0.3);
+  }
+  50% {
+      opacity: 1;
+      transform: scale(1.05);
+  }
+  70% {
+      transform: scale(0.9);
+  }
+  100% {
+      transform: scale(1);
+  }
+}
+
+.btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.bg-gradient {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+}
+
+.animate__animated.animate__fadeIn {
+  animation-duration: 1.5s;
+}
+
+.animate__animated.animate__zoomIn {
+  animation-duration: 0.8s;
+}
+
+.animate__animated.animate__pulse {
+  animation-duration: 1.2s;
+  animation-iteration-count: infinite;
+}

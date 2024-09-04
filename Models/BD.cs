@@ -33,7 +33,7 @@ public static class BD
         string query = "SELECT * FROM Preguntas WHERE (@IdDificultad = -1 OR IdDificultad = @IdDificultad) AND (@IdCategoria = -1 OR IdCategoria = @IdCategoria)"; //creo que esta mal la condicion pero es lo primeor que se me ocurrio
         using (SqlConnection db = new SqlConnection(_connectionString))
         {
-            return db.Query<Preguntas>(query, new { IdDificultad = dificultad, IdCategoria = categoria }).AsList();
+            return db.Query<Preguntas>(query, new { IdDificultades = dificultad, IdCatergoria = categoria }).AsList();
         }
     }
 

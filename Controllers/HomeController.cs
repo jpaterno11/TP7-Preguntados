@@ -40,11 +40,11 @@ public class HomeController : Controller
         {
             ViewBag.pregunta = pregunta;
             ViewBag.respuesta = new List<Respuestas>();
-            foreach (Respuestas r in Juego._respuestas)
+            foreach (Respuestas respuesta in Juego._respuestas)
             {
-                if (r.IdPregunta == pregunta.IdPreguntas)
+                if (respuesta.IdPregunta == pregunta.IdPreguntas)
                 {
-                    ((List<Respuestas>)ViewBag.respuesta).Add(r); //medio raro esto pero no encontre otra forma de agregar a un viewbag tipo lista
+                    ((List<Respuestas>)ViewBag.respuesta).Add(respuesta); //medio raro esto pero no encontre otra forma de agregar a un viewbag tipo lista
                 }
             }
             return View("Juego");

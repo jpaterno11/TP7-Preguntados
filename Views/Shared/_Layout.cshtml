@@ -8,39 +8,35 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 </head>
-
 <body>
-    <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">
-            <img src="~/img/logo.png" width="130" height="130" class="d-inline-block align-top" alt="Logo">
-            PreguntadOrt
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="ConfigurarJuego">Jugar</a>
-                </li>
-            </ul>
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary shadow-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white" href="@Url.Action("Index", "Home")">
+                <img src="~/img/logo.png" alt="Logo PreguntadOrt" class="d-inline-block align-text-top" style="max-height: 50px;">
+                PreguntadOrt
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="@Url.Action("ConfigurarJuego", "Home")">Jugar</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
-    </header>
 
-    <main role="main">
+    <div class="container mt-4">
         @RenderBody()
-    </main>
+    </div>
 
-    <footer>
-        &copy; @DateTime.Now.Year - PreguntadOrt
+    <footer class="footer mt-auto py-3 bg-primary text-white text-center shadow-lg">
+        <div class="container">
+            <span>&copy; 2024 PreguntadOrt. Todos los derechos reservados.</span>
+        </div>
     </footer>
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>
