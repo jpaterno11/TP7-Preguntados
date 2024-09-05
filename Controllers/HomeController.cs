@@ -35,6 +35,9 @@ public class HomeController : Controller
     }
     public IActionResult Jugar()
     {
+        ViewBag.Username = Juego._username;
+        ViewBag.PuntajeActual = Juego._puntajeActual;
+        ViewBag.ContadorPreguntaActual = Juego._contadorPreguntaActual;
         Preguntas pregunta = Juego.ObtenerProximaPregunta();
           if (pregunta != null)
         {
@@ -42,7 +45,7 @@ public class HomeController : Controller
             ViewBag.respuesta = new List<Respuestas>();
             foreach (Respuestas respuesta in Juego._respuestas)
             {
-                if (respuesta.IdPregunta == pregunta.IdPreguntas)
+                if (respuesta.IdPregunta == ViewBag.pregunta.IdPregunta)
                 {
                     ((List<Respuestas>)ViewBag.respuesta).Add(respuesta); //medio raro esto pero no encontre otra forma de agregar a un viewbag tipo lista
                 }
@@ -52,13 +55,13 @@ public class HomeController : Controller
         return View("Fin");
     }
     [HttpPost]
-    public IActionResult VerificarRespuesta(int idPregunta, int idRespuesta)
+    public IActionResult VerificarRespuesta(int IdPregunta, int idRespuesta)
     {
-        ViewBag.correcto = Juego.VerificarRespuesta(idPregunta, idRespuesta);
+        ViewBag.correcto = Juego.VerificarRespuesta(IdPregunta, idRespuesta);
         if (ViewBag.correcto)
         {
-            ViewBag.respuestaCorrecta = Juego._respuestas.Find(respuesta => respuesta.IdPregunta == idPregunta && respuesta.Correcta); 
+            ViewBag.respuestaCorrecta = Juego._respuestas.Find(respuesta => respuesta.IdPregunta == IdPregunta && respuesta.Correcta); 
         }
-        return View("Resultado");
+        return RedirectToAction("Jugar");
     }
 }

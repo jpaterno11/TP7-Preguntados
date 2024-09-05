@@ -1,13 +1,13 @@
 public class Dificultades
 {
-    public int IdDificultades { get; set; }
+    public int IdDificultad { get; set; }
     public string Nombre { get; set; }
 
     public Dificultades() { }
 
-    public Dificultades(int IdDificultades, string nombre)
+    public Dificultades(int iddif, string nombre)
     {
-        IdDificultades = IdDificultades;
+        IdDificultad = iddif;
         Nombre = nombre;
     }
 }

@@ -1,8 +1,8 @@
 public static class Juego
 {
-    private static string _username {get; set;}
-    private static int _puntajeActual {get; set;}
-    private static int _contadorPreguntaActual {get; set;}
+    public static string _username {get; set;}
+    public static int _puntajeActual {get; set;}
+    public static int _contadorPreguntaActual {get; set;}
     private static int _cantidadPreguntasCorrectas {get; set;}
     private static List<Preguntas> _preguntas {get; set;}
     public static List<Respuestas> _respuestas {get; set;}
@@ -20,7 +20,11 @@ public static class Juego
         _respuestas = new List<Respuestas>();
         foreach (Preguntas pregunta in _preguntas)
         {
-            _respuestas.Add(BD.ObtenerRespuestas(pregunta.IdPreguntas)); 
+            List<Respuestas> respuestas = BD.ObtenerRespuestas(pregunta.IdPregunta); 
+            foreach (Respuestas resp in respuestas)
+            {
+                _respuestas.Add(resp);
+            }             
         }
     }
     public static bool HayPreguntasCargadas()
@@ -31,6 +35,7 @@ public static class Juego
     {
         if (_preguntas != null && _preguntas.Count > 0)
         {
+            _contadorPreguntaActual++;
             Random rnd = new Random();
             int random = rnd.Next(_preguntas.Count);
             return _preguntas[random];
@@ -40,13 +45,13 @@ public static class Juego
     
      public static bool VerificarRespuesta(int idPregunta, int idRespuesta)
     {
-        var respuestaCorrecta = _respuestas.Find(respuesta => respuesta.IdRespuestas == idRespuesta && respuesta.IdPregunta == idPregunta && respuesta.Correcta);
+        Respuestas respuestaCorrecta = _respuestas.Find(respuesta => respuesta.IdRespuesta == idRespuesta && respuesta.IdPregunta == idPregunta && respuesta.Correcta);
 
         if (respuestaCorrecta != null)
         {
             _puntajeActual += 10;
             _cantidadPreguntasCorrectas++;
-            _preguntas.RemoveAll(pregunta => pregunta.IdPreguntas == idPregunta);
+            _preguntas.RemoveAll(pregunta => pregunta.IdPregunta == idPregunta);
             return true;
         }
 

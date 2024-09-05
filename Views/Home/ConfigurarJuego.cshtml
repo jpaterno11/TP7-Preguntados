@@ -21,7 +21,7 @@
                 <option value="-1">Todas</option>
                 @foreach (Dificultades dificultad in dificultades)
                 {   
-                    <option value="@a">@dificultad.Nombre</option>
+                    <option value="@a" id="dificultad" name="dificultad">@dificultad.Nombre</option>
                     a++;
                 }
             </select>
@@ -33,7 +33,7 @@
                 <option value="-1">Todas</option>
                 @foreach (Categoria categoria in categorias)
                 {   
-                    <option value="@b">@categoria.Nombre</option>
+                    <option value="@b" id="categoria" name="categoria">@categoria.Nombre</option>
                     b++;
                 }
             </select>

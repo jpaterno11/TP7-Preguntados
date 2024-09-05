@@ -1,14 +1,12 @@
 @{
     ViewData["Title"] = "Fin del Juego";
-    var usuario = ViewBag.Username;
-    var puntajeFinal = ViewBag.PuntajeFinal;
 }
 
 <div class="container mt-5 text-center">
     <div class="card shadow-lg p-4 animate__animated animate__fadeIn">
         <h2 class="text-primary">¡Juego Terminado!</h2>
-        <h3>Jugador: @usuario</h3>
-        <h4>Puntaje Final: @puntajeFinal</h4>
+        <h3>Jugador: @ViewBag.Username</h3>
+        <h4>Puntaje Final: @ViewBag.PuntajeActual</h4>
         <a href="@Url.Action("ConfigurarJuego", "Home")" class="btn btn-primary mt-4">Volver a Jugar</a>
     </div>
 </div>

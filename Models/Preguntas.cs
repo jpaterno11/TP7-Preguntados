@@ -1,18 +1,18 @@
 public class Preguntas
 {
-    public int IdPreguntas { get; set; }
-    public int IdDificultades { get; set; }
-    public int IdCatergoria { get; set; }
+    public int IdPregunta { get; set; }
+    public int IdDificultad { get; set; }
+    public int IdCategoria { get; set; }
     public string Enunciado { get; set; }
     public string Foto { get; set; }
 
     public Preguntas() { }
 
-    public Preguntas(int idPreguntas, int idDificultades, int idCatergoria, string enunciado, string foto)
+    public Preguntas(int idpreg, int iddif, int idcat, string enunciado, string foto)
     {
-        IdPreguntas = idPreguntas;
-        IdDificultades = idDificultades;
-        IdCatergoria = idCatergoria;
+        IdPregunta = idpreg;
+        IdDificultad = iddif;
+        IdCategoria = idcat;
         Enunciado = enunciado;
         Foto = foto;
 
