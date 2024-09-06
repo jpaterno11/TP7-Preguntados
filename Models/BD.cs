@@ -30,7 +30,23 @@ public static class BD
 
     public static List<Preguntas> ObtenerPreguntas(int dificultad, int categoria)
     {
-        string query = "SELECT * FROM Preguntas WHERE (@IdDificultad = -1 OR IdDificultad = @IdDificultad) AND (@IdCategoria = -1 OR IdCategoria = @IdCategoria)"; //creo que esta mal la condicion pero es lo primeor que se me ocurrio
+        string query = "SELECT * FROM Preguntas"; //creo que esta mal la condicion pero es lo primeor que se me ocurrio
+        if (dificultad != -1 || categoria != -1)
+        {
+        query += " WHERE ";
+        if (dificultad != -1)
+        {
+            query += "IdDificultad = " + dificultad;
+        }
+        else
+        {
+            query += "IdCategoria = " + categoria;
+        }
+        if (dificultad != -1 && categoria != -1)
+        {
+            query += "IdDificultad = " + dificultad + " AND IdCategoria = " + categoria;
+        }
+        }
         using (SqlConnection db = new SqlConnection(_connectionString))
         {
             return db.Query<Preguntas>(query, new { IdDificultad = dificultad, IdCategoria = categoria }).AsList();

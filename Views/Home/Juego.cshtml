@@ -8,7 +8,7 @@
             <h4>Jugador: @ViewBag.Username - Puntaje: @ViewBag.PuntajeActual</h4>
         </div>
         <div class="card-body">
-            <h5 class="card-title">Pregunta @ViewBag.ContadorPreguntaActual:</h5>
+            <h5 class="card-title">Pregunta @(ViewBag.ContadorPreguntaActual):</h5>
             <p class="card-text">@ViewBag.Pregunta.Enunciado</p>
             @if (!string.IsNullOrEmpty(ViewBag.Pregunta.Foto))
             {
