@@ -4,7 +4,7 @@ public static class Juego
     public static int _puntajeActual {get; set;}
     public static int _contadorPreguntaActual {get; set;}
     private static int _cantidadPreguntasCorrectas {get; set;}
-    private static List<Preguntas> _preguntas {get; set;}
+    public static List<Preguntas> _preguntas {get; set;}
     public static List<Respuestas> _respuestas {get; set;}
 
     public static void InicializarJuego()
