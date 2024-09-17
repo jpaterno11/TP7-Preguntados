@@ -14,19 +14,14 @@
             {
                 <img src="~/img/@ViewBag.Pregunta.Foto" alt="Imagen de la pregunta" class="img-fluid mb-3 rounded shadow-sm">
             }
-           @if (!string.IsNullOrEmpty(ViewBag.Mensaje))
-            {
-                <div class="alert @(ViewBag.Mensaje.Contains("incorrecta") ? "alert-danger animate__animated animate__shakeX" : "alert-success animate__animated animate__fadeInDown")">
-                    @ViewBag.Mensaje
-                </div>
-            }
             <form action="@Url.Action("VerificarRespuesta", "Home")" method="post">
                 @foreach (Respuestas respuesta in ViewBag.respuesta)
                 {
                     <div class="form-check mb-2">
-                        <button type="submit" name="idRespuesta" value="@respuesta.IdRespuesta" class="btn btn-primary btn-block mb-2">
-                        @respuesta.Opcion: @respuesta.Contenido
-                    </button>
+                        <input class="form-check-input" type="radio" name="idRespuesta" id="respuesta@respuesta.IdRespuesta" value="@respuesta.IdRespuesta" required>
+                        <label class="form-check-label" for="respuesta@respuesta.IdRespuestas">
+                            @respuesta.Opcion: @respuesta.Contenido
+                        </label>
                         @if (!string.IsNullOrEmpty(respuesta.Foto))
                         {
                             <img src="~/img/@respuesta.Foto" alt="Imagen de la respuesta" class="img-fluid rounded shadow-sm">
@@ -34,8 +29,7 @@
                     </div>
                 }
 
-                <input type="hidden" name="IdPregunta" value="@ViewBag.pregunta.IdPregunta">
-                <input type="hidden" name="pregunta" value="@ViewBag.pregunta">
+                <input type="hidden" name="IdPregunta" value="@ViewBag.Pregunta.IdPregunta">
                 <button type="submit" class="btn btn-success mt-3">Responder</button>
             </form>
         </div>

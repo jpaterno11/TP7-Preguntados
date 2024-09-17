@@ -27,22 +27,18 @@ public class HomeController : Controller
     public IActionResult Comenzar(string username, int dificultad, int categoria)
     {
         Juego.CargarPartida(username, dificultad, categoria);
-        Preguntas pregunta = Juego.ObtenerProximaPregunta();
         if (!Juego.HayPreguntasCargadas())
         {
             return RedirectToAction("ConfigurarJuego");
         }
-        return RedirectToAction("Jugar", pregunta);
+        return RedirectToAction("Jugar");
     }
-    public IActionResult Jugar(Preguntas pregunta)
-    { 
-        if (TempData["Incorrecto"] == null)
-        {
-            pregunta = Juego.ObtenerProximaPregunta();
-        }
+    public IActionResult Jugar()
+    {
         ViewBag.Username = Juego._username;
         ViewBag.PuntajeActual = Juego._puntajeActual;
         ViewBag.ContadorPreguntaActual = Juego._contadorPreguntaActual;
+        Preguntas pregunta = Juego.ObtenerProximaPregunta();
           if (pregunta != null)
         {
             ViewBag.pregunta = pregunta;
@@ -65,10 +61,6 @@ public class HomeController : Controller
         if (ViewBag.correcto)
         {
             ViewBag.respuestaCorrecta = Juego._respuestas.Find(respuesta => respuesta.IdPregunta == IdPregunta && respuesta.Correcta); 
-        }
-        else
-        {
-            TempData["Incorrecto"] = "Respuesta incorrecta, ¡Intenta nuevamente!";
         }
         return RedirectToAction("Jugar");
     }

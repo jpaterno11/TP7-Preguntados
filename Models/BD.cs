@@ -30,18 +30,22 @@ public static class BD
 
     public static List<Preguntas> ObtenerPreguntas(int dificultad, int categoria)
     {
-        string query = "SELECT * FROM Preguntas WHERE (IdDificultad = @IdDificultad) AND (IdCategoria = @IdCategoria)"; //creo que esta mal la condicion pero es lo primeor que se me ocurrio
-        if (dificultad == -1 && categoria == -1)
+        string query = "SELECT * FROM Preguntas"; //creo que esta mal la condicion pero es lo primeor que se me ocurrio
+        if (dificultad != -1 || categoria != -1)
         {
-             query = "SELECT * FROM Preguntas";
+        query += " WHERE ";
+        if (dificultad != -1)
+        {
+            query += "IdDificultad = " + dificultad;
         }
-        else if (dificultad == -1 && categoria != -1)
+        else
         {
-            query = "SELECT * FROM Preguntas  WHERE (IdCategoria = @IdCategoria)";
+            query += "IdCategoria = " + categoria;
         }
-        else if (dificultad != -1 && categoria == -1)
+        if (dificultad != -1 && categoria != -1)
         {
-            query = "SELECT * FROM Preguntas  WHERE (IdDificultad = @IdDificultad)";
+            query += "IdDificultad = " + dificultad + " AND IdCategoria = " + categoria;
+        }
         }
         using (SqlConnection db = new SqlConnection(_connectionString))
         {
