@@ -2,32 +2,38 @@
     ViewData["Title"] = "Juego";
 }
 
-<div class="container mt-5">
-    <div class="card shadow-lg animate__animated animate__fadeIn">
-        <div class="card-header bg-primary text-white">
-            <h4>Jugador: @ViewBag.Username - Puntaje: @ViewBag.PuntajeActual</h4>
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Pregunta @(ViewBag.ContadorPreguntaActual):</h5>
-            <p class="card-text">@ViewBag.Pregunta.Enunciado</p>
-            @if (!string.IsNullOrEmpty(ViewBag.Pregunta.Foto))
-            {
-                <img src="~/img/@ViewBag.Pregunta.Foto" alt="Imagen de la pregunta" class="img-fluid mb-3 rounded shadow-sm">
-            }
-            <form action="@Url.Action("VerificarRespuesta", "Home")" method="post">
-                @foreach (Respuestas respuesta in ViewBag.respuesta)
-                {
-                    <div class="form-check mb-2">
-                        <button class="btn btn-success mt-3" type="radio" name="idRespuesta" id="respuesta@respuesta.IdRespuesta" value="@respuesta.IdRespuesta"> @respuesta.Opcion: @respuesta.Contenido
-                        @if (!string.IsNullOrEmpty(respuesta.Foto))
+<div class="container-fluid vh-100 p-0">
+    <div class="row h-100 m-0">
+        <div class="col-12 p-0">
+            <div class="card shadow-lg w-100 animate__animated animate__fadeIn">
+                <div class="card-header bg-primary text-white">
+                    <h4>Jugador: @ViewBag.Username - Puntaje: @ViewBag.PuntajeActual</h4>
+                </div>
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <h5 class="card-title">Pregunta @(ViewBag.ContadorPreguntaActual):</h5>
+                    <p class="card-text">@ViewBag.Pregunta.Enunciado</p>
+                    @if (!string.IsNullOrEmpty(ViewBag.Pregunta.Foto))
+                    {
+                        <img src="~/img/@ViewBag.Pregunta.Foto" alt="Imagen de la pregunta" class="img-fluid mb-3 rounded shadow-sm">
+                    }
+                    <form action="@Url.Action("VerificarRespuesta", "Home")" method="post" class="d-flex flex-column">
+                        @foreach (Respuestas respuesta in ViewBag.respuesta)
                         {
-                            <img src="~/img/@respuesta.Foto" alt="Imagen de la respuesta" class="img-fluid rounded shadow-sm">
+                            <div class="form-check">
+                                <button class="btn btn-success w-100 mb-5 py-1 fs-4" type="radio" name="idRespuesta" id="respuesta@respuesta.IdRespuesta" value="@respuesta.IdRespuesta">
+                                    @respuesta.Opcion: @respuesta.Contenido
+                                    @if (!string.IsNullOrEmpty(respuesta.Foto))
+                                    {
+                                        <img src="~/img/@respuesta.Foto" alt="Imagen de la respuesta" class="img-fluid rounded shadow-sm">
+                                    }
+                                </button>
+                            </div>
                         }
-                    </div>
-                }
 
-                <input type="hidden" name="IdPregunta" value="@ViewBag.Pregunta.IdPregunta">
-            </form>
+                        <input type="hidden" name="IdPregunta" value="@ViewBag.Pregunta.IdPregunta">
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>

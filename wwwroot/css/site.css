@@ -5,7 +5,7 @@ html {
 
 @media (min-width: 768px) {
   html {
-    font-size: 16px;
+      font-size: 16px;
   }
 }
 
@@ -14,15 +14,49 @@ body {
   padding: 10px;
 }
 
+/* Estilo para el formulario de preguntas */
+form {
+  background-color: #FFFFFF; /* Fondo blanco */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Añade un sutil borde */
+  padding: 20px;
+}
+
+/* Botones de las respuestas */
+.btn {
+  background-color: #007EA7; /* Cerulean */
+  color: white;
+  font-size: 1.2em;
+  padding: 10px;
+  margin-bottom: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #00A7E1; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+}
+
+.card-header {
+  background-color: #003459; 
+  color: #FFFFFF; 
+  font-size: 1.5em;
+  padding: 15px;
+}
+
+.card-body {
+  background-color: #FFFFFF; 
+  color: #00171F; 
+  font-size: 1.2em;
+  margin-bottom: 15px;
+}
 
 footer {
-  margin-top: 10px;
-  padding: 10px;
-  background-color: #f8f9fa;
+  background-color: #003459; 
+  color: #FFFFFF;
   border-top: 1px solid #e9ecef;
-}
-.logo-animado img {
-  animation: bounceIn 2s;
+  padding: 20px;
 }
 
 @keyframes bounceIn {

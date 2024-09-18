@@ -8,10 +8,12 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-primary shadow-lg">
+    <nav class="navbar navbar-expand-lg navbar-light shadow-lg" style="background-color: #007EA7;">
         <div class="container-fluid">
             <a class="navbar-brand text-white" href="@Url.Action("Index", "Home")">
+            
                 <img src="~/img/logo.png" alt="Logo PreguntadOrt" class="d-inline-block align-text-top" style="max-height: 50px;">
                 PreguntadOrt
             </a>
@@ -32,7 +34,7 @@
         @RenderBody()
     </div>
 
-    <footer class="footer mt-auto py-3 bg-primary text-white text-center shadow-lg">
+    <footer class="footer mt-auto py-3 text-white text-center shadow-lg" style="background-color: #003459;">
         <div class="container">
             <span>&copy; 2024 PreguntadOrt. Todos los derechos reservados.</span>
         </div>
